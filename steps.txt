@@ -1,0 +1,15 @@
+to do app idea
+
+plan out the data
+
+convert to json using https://jsoneditoronline.org/
+
+used https://roger13.github.io/SwagDefGen/ to convert sample json to swagger yaml schema
+
+
+
+next steps:
+watch the swagger video again 
+watching token video: https://www.youtube.com/watch?v=mbsmsi7l3r4&t=850s
+meet during class time via zoom
+convert swagger design to mongodb schema

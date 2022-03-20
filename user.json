@@ -1,0 +1,13 @@
+{
+    "user": {
+      "username" : "melanie",
+      "password" : "boleen",
+      "email" : "mel@test.com"
+    },
+    "event":{
+      "title" : "lunch",
+      "status" : "false",
+      "date" : "03-19-2022",
+      "description" : "Lunch with myself"
+    }
+  }

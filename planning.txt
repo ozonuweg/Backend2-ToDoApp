@@ -1,0 +1,12 @@
+user
+    _id              | Mongodb_ID
+    username         | String
+    password         | String
+    email            | String
+    
+event
+    _id              | MongoDb_ID
+    title            | String
+    status           | Boolean
+    date             | Date
+    description      | String 
