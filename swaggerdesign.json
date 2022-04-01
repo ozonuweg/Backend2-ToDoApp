@@ -12,7 +12,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "todo-app-backend2.herokuapp.com/",
+  "host": "todo-app-backend2.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
