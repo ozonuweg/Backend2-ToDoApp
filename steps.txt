@@ -13,3 +13,6 @@ watch the swagger video again
 watching token video: https://www.youtube.com/watch?v=mbsmsi7l3r4&t=850s
 meet during class time via zoom
 convert swagger design to mongodb schema
+
+next step:
+change line 31 in swaggerdesign http to https once connected to heroku
