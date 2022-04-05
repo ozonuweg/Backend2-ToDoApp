@@ -11,7 +11,7 @@ module.exports = (mongoose) => {
       },
       event_name: {
         type: String
-      },
+      }
     });
   
     return mongoose.model('users', userSchema);

@@ -16,3 +16,5 @@ convert swagger design to mongodb schema
 
 next step:
 change line 31 in swaggerdesign http to https once connected to heroku.
+
+Last day of class!!!!!

@@ -12,7 +12,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "todo-app-backend2.herokuapp.com",
+  "host": "localhost:8080",
   "basePath": "/",
   "tags": [
     {
@@ -28,7 +28,7 @@
       "description": "These API endpoints are designed and will be created in the near future"
     }
   ],
-  "schemes": ["https"],
+  "schemes": ["http"],
   "paths": {
     "/event": {
       "get": {
@@ -172,9 +172,9 @@
           }
         }
       }
-      },
-      "/user": {
-        "post": {
+    },
+    "/user": {
+      "post": {
           "tags": ["user"],
           "summary": "Create user",
           "description": "This is for when a user creates an account.",
@@ -203,19 +203,19 @@
                   },
                   "name": {
                     "type": "string",
-                    "example": "Nike Theme"
+                    "example": "Your Event"
                   }
                 }
               }
             },
             "400": {
-              "description": "Invalid theme name value"
+              "description": "Invalid event name value"
             }
           }
         }
-      },
-      "/user/login": {
-        "get": {
+    },
+    "/user/login": {
+      "get": {
           "tags": ["Not Yet Implemented"],
           "summary": "Logs user into the system",
           "operationId": "loginUser",
@@ -247,7 +247,7 @@
                 },
                 "X-Expires-After": {
                   "type": "string",
-                  "example": "Nike Event"
+                  "example": "Your Event"
                 }
               },
               "schema": {
@@ -262,9 +262,9 @@
             "description": "Invalid event name value"
           }
         }
-      },
-      "/user/logout": {
-        "get": {
+    },
+    "/user/logout": {
+      "get": {
           "tags": ["Not Yet Implemented"],
           "summary": "Logs out current logged in user session",
           "operationId": "logoutUser",
@@ -276,9 +276,9 @@
             }
           }
         }
-      },
-      "/user/{username}": {
-        "get": {
+    },
+    "/user/{username}": {
+      "get": {
           "tags": ["user"],
           "summary": "Get user by user name",
           "operationId": "getUserByName",
@@ -306,8 +306,8 @@
               "description": "User not found"
             }
           }
-        },
-        "put": {
+      },
+      "put": {
           "tags": ["Not Yet Implemented"],
           "summary": "Updated user",
           "description": "This can only be done by the logged in user.",
@@ -342,8 +342,8 @@
               "description": "User not found"
             }
           }
-        },
-        "delete": {
+      },
+      "delete": {
           "tags": ["Not Yet Implemented"],
           "summary": "Delete user",
           "description": "This can only be done by the logged in user.",
@@ -369,10 +369,10 @@
               "description": "User not found"
             }
           }
-        
-      },
-      "/user": {
-        "get": {
+       } 
+    },
+    "/user": {
+      "get": {
           "tags": ["user"],
           "summary": "Get all users",
           "operationId": "getAllUsers",
@@ -389,8 +389,8 @@
               "description": "Error occurred"
             }
           }
-        },
-        "post": {
+      },
+      "post": {
           "tags": ["user"],
           "summary": "Create user",
           "description": "This is for when a user creates an account",
@@ -416,8 +416,8 @@
             }
           }
         }
-      }
-    },
+    }
+  },
   "definitions": {
     "User": {
       "type": "object",
@@ -456,8 +456,9 @@
           "type": "string"
         }
       }
-    },
-    "Credentials": {
+    
+  },
+  "Credentials": {
       "type": "object",
       "required": ["password", "username"],
       "properties": {
@@ -468,7 +469,6 @@
           "type": "string"
         }
       }
-    }
     },
     "CredentialsforEvents": {
       "type": "object",
