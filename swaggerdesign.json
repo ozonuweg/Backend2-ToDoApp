@@ -371,11 +371,11 @@
           }
         
       },
-      "/event": {
+      "/user": {
         "get": {
           "tags": ["user"],
-          "summary": "Get all events",
-          "operationId": "getAllEvents",
+          "summary": "Get all users",
+          "operationId": "getAllUsers",
           "produces": ["application/json"],
           "responses": {
             "200": {
@@ -418,185 +418,6 @@
         }
       }
     },
-    "securityDefinitions": {
-      "petstore_auth": {
-        "type": "oauth2",
-        "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-        "flow": "implicit",
-        "scopes": {
-          "write:pets": "modify pets in your account",
-          "read:pets": "read your pets"
-        }
-      }
-    },
-    "definitions": {
-      "User": {
-        "type": "object",
-        "required": ["password", "username"],
-        "properties": {
-          "_id": {
-            "type": "integer",
-            "format": "string"
-          },
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "info": {
-            "$ref": "#/definitions/User_info"
-          },
-          "profile": {
-            "$ref": "#/definitions/User_profile"
-          }
-        }
-      },
-      "Theme": {
-        "type": "object",
-        "required": ["colors", "fontFamily", "fontSize", "name"],
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string",
-            "example": "Nike Theme"
-          },
-          "fontSize": {
-            "type": "integer",
-            "example": 18
-          },
-          "fontFamily": {
-            "type": "string",
-            "example": "futura"
-          },
-          "inspiration": {
-            "type": "string",
-            "example": "https://www.nike.com/"
-          },
-          "colors": {
-            "type": "array",
-            "example": ["", "#111", "#fff", "#F5F3EE", "#757575", "#7e7e7e", ", ", ", ", ""],
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "Credentials": {
-        "type": "object",
-        "required": ["password", "username"],
-        "properties": {
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          }
-        }
-      },
-      "User_info": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          },
-          "phoneNumber": {
-            "type": "string"
-          },
-          "currentLocation": {
-            "type": "string"
-          },
-          "openToNewOpportunities": {
-            "type": "boolean"
-          },
-          "profileIsPublic": {
-            "type": "boolean"
-          },
-          "theme_name": {
-            "type": "string"
-          }
-        }
-      },
-      "User_profile_experience": {
-        "type": "object",
-        "properties": {
-          "jobTitle": {
-            "type": "string"
-          },
-          "jobDescription": {
-            "type": "string"
-          },
-          "details": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "dateStart": {
-            "type": "string"
-          },
-          "dateEnd": {
-            "type": "string"
-          },
-          "company": {
-            "type": "string"
-          },
-          "location": {
-            "type": "string"
-          }
-        }
-      },
-      "User_profile_education": {
-        "type": "object",
-        "properties": {
-          "institution": {
-            "type": "string"
-          },
-          "programTitle": {
-            "type": "string"
-          },
-          "programDescription": {
-            "type": "string"
-          },
-          "dateStart": {
-            "type": "string"
-          },
-          "dateEnd": {
-            "type": "string"
-          },
-          "completed": {
-            "type": "boolean"
-          },
-          "location": {
-            "type": "string"
-          },
-          "topics": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    }
-  },
-  "securityDefinitions": {
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-      "flow": "implicit",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
-    }
-  },
   "definitions": {
     "User": {
       "type": "object",
@@ -647,6 +468,7 @@
           "type": "string"
         }
       }
+    }
     },
     "CredentialsforEvents": {
       "type": "object",

@@ -10,8 +10,8 @@ module.exports = (mongoose) => {
         type: String
       },
       event_name: {
-        type: Array
-      }
+        type: String
+      },
     });
   
     return mongoose.model('users', userSchema);
