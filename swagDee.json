@@ -30,6 +30,7 @@
     ],
     "schemes": ["https"],
     "paths": {
+      
       "/theme/{themeName}": {
         "get": {
           "tags": ["theme"],

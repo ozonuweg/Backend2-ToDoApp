@@ -12,7 +12,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "localhost:8080",
+  "host": "todo-app-backend2.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
@@ -28,9 +28,8 @@
       "description": "These API endpoints are designed and will be created in the near future"
     }
   ],
-  "schemes": ["http"],
+  "schemes": ["https"],
   "paths": {
-
     "/event": {
       "get": {
         "tags": ["event"],
@@ -111,7 +110,7 @@
         }
       },
       "put": {
-        "tags": ["event"],
+        "tags": ["Not Yet Implemented"],
         "summary": "Updated event",
         "description": "This can only be done by the logged in user.",
         "operationId": "updateEvent",
@@ -147,7 +146,7 @@
         }
       },
       "delete": {
-        "tags": ["event"],
+        "tags": ["Not Yet Implemented"],
         "summary": "Delete event",
         "description": "This can only be done by the logged in user.",
         "operationId": "deleteEvent",
@@ -172,6 +171,7 @@
             "description": "Event not found"
           }
         }
+      }
       },
       "/user": {
         "post": {
@@ -369,13 +369,13 @@
               "description": "User not found"
             }
           }
-        }
+        
       },
-      "/user": {
+      "/event": {
         "get": {
           "tags": ["user"],
-          "summary": "Get all users",
-          "operationId": "getAllUsers",
+          "summary": "Get all events",
+          "operationId": "getAllEvents",
           "produces": ["application/json"],
           "responses": {
             "200": {
