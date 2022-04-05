@@ -19,5 +19,5 @@ module.exports = (mongoose) => {
     }
   });
 
-  return mongoose.model('events', eventSchema);
+  return mongoose.model('event', eventSchema);
 };
