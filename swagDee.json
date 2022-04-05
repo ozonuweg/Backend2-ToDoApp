@@ -1,175 +1,71 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "description": "This is an api server for a portfolio builder website.\n",
-    "version": "1.0.0",
-    "title": "Todo-app",
-    "contact": {
-      "email": "nya19001.edu"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    }
-  },
-  "host": "localhost:8080",
-  "basePath": "/",
-  "tags": [
-    {
-      "name": "event",
-      "description": "Operations about events"
-    },
-    {
-      "name": "user",
-      "description": "Operations about user"
-    },
-    {
-      "name": "Not Yet Implemented",
-      "description": "These API endpoints are designed and will be created in the near future"
-    }
-  ],
-  "schemes": ["http"],
-  "paths": {
-
-    "/event": {
-      "get": {
-        "tags": ["event"],
-        "summary": "Get all events",
-        "operationId": "getAllEvents",
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "Array",
-              "$ref": "#/definitions/Event"
-            }
-          },
-          "500": {
-            "description": "Error occurred"
-          }
-        }
+    "swagger": "2.0",
+    "info": {
+      "description": "This is an api server for a portfolio builderr website.\n",
+      "version": "1.0.0",
+      "title": "Todo-app",
+      "contact": {
+        "email": "nya19001.edu"
       },
-      "post": {
-        "tags": ["event"],
-        "summary": "Create event",
-        "description": "This is for when an event is created",
-        "operationId": "createEvent",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Created event object",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CredentialsforEvents"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "An Event object",
-            "schema": {
-              "$ref": "#/definitions/Event"
-            }
-          }
-        }
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
       }
-
     },
-    "/event/{eventName}": {
-      "get": {
-        "tags": ["event"],
-        "summary": "Finds Events by name",
-        "description": "Each event has a unique name, this will basically find a single event by an exact name almost like an id",
-        "operationId": "findEventByName",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "eventName",
-            "in": "path",
-            "description": "Event name string is required and functions as id",
-            "required": true,
-            "type": "string"
-            
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Event"
-            }
-          },
-          "400": {
-            "description": "Invalid event name value"
-          },
-          "404": {
-            "description": "Event not found"
-          }
-        }
+    "host": "todo-app-backend2.herokuapp.com",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "theme",
+        "description": "Operations about themes"
       },
-      "put": {
-        "tags": ["event"],
-        "summary": "Updated event",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "updateEvent",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "description": "name that need to be updated",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Updated event object",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Event"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successfully modified event"
-          },
-          "400": {
-            "description": "Invalid event supplied"
-          },
-          "404": {
-            "description": "Event not found"
-          }
-        }
+      {
+        "name": "user",
+        "description": "Operations about user"
       },
-      "delete": {
-        "tags": ["event"],
-        "summary": "Delete event",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "deleteEvent",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "description": "The name that needs to be deleted",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successfully deleted event"
-          },
-          "400": {
-            "description": "Invalid event supplied"
-          },
-          "404": {
-            "description": "Event not found"
+      {
+        "name": "Not Yet Implemented",
+        "description": "These API endpoints are designed and will be created in the near future"
+      }
+    ],
+    "schemes": ["https"],
+    "paths": {
+      "/theme/{themeName}": {
+        "get": {
+          "tags": ["theme"],
+          "summary": "Finds Themes by name",
+          "description": "Each theme has a unique name, this will basically find a single theme by an exact name almost like an id",
+          "operationId": "findThemeByName",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "themeName",
+              "in": "path",
+              "description": "Theme name string is required and functions as id",
+              "required": true,
+              "type": "string",
+              "items": {
+                "type": "string",
+                "default": "available"
+              },
+              "collectionFormat": "csv"
+            }
+          ],
+          "security": [
+            {
+              "petstore_auth": ["write:pets", "read:pets"]
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object"
+              }
+            },
+            "400": {
+              "description": "Invalid theme name value"
+            }
           }
         }
       },
@@ -247,7 +143,8 @@
                 },
                 "X-Expires-After": {
                   "type": "string",
-                  "example": "Nike Event"
+                  "format": "date-time",
+                  "description": "date in UTC when token expires"
                 }
               },
               "schema": {
@@ -257,9 +154,6 @@
             "400": {
               "description": "Invalid username/password supplied"
             }
-          },
-          "400": {
-            "description": "Invalid event name value"
           }
         }
       },
@@ -583,89 +477,97 @@
             }
           }
         }
-      }
-    }
-  },
-  "securityDefinitions": {
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-      "flow": "implicit",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
-    }
-  },
-  "definitions": {
-    "User": {
-      "type": "object",
-      "required": ["password", "username"],
-      "properties": {
-        "_id": {
-          "type": "integer",
-          "format": "string"
-        },
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
+      },
+      "User_profile_projects": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "dateStart": {
+            "type": "string"
+          },
+          "dateEnd": {
+            "type": "string"
+          },
+          "githubUrl": {
+            "type": "string"
+          },
+          "hostedUrl": {
+            "type": "string"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "User_profile_references": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "relationship": {
+            "type": "string"
+          },
+          "contactInfo": {
+            "type": "string"
+          },
+          "yearsKnown": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "knownFromWhere": {
+            "type": "string"
+          }
+        }
+      },
+      "User_profile": {
+        "type": "object",
+        "properties": {
+          "experience": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/User_profile_experience"
+            }
+          },
+          "education": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/User_profile_education"
+            }
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/User_profile_projects"
+            }
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/User_profile_references"
+            }
+          }
         }
       }
-    },
-    "Event": {
-      "type": "object",
-      "required": ["title", "done", "date", "description"],
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "title": {
-          "type": "string"
-        },
-        "done": {
-          "type": "boolean"
-        },
-        "date": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      }
-    },
-    "Credentials": {
-      "type": "object",
-      "required": ["password", "username"],
-      "properties": {
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "CredentialsforEvents": {
-      "type": "object",
-      "required": ["title", "done", "date", "description"],
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "done": {
-          "type": "boolean"
-        },
-        "date": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      }
-      
     }
   }
-}
