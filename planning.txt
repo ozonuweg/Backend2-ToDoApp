@@ -7,6 +7,6 @@ user
 event
     _id              | MongoDb_ID
     title            | String
-    status           | Boolean
+    done             | Boolean
     date             | Date
     description      | String 
