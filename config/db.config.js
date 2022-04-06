@@ -4,4 +4,5 @@ dotenv.config();
 
 module.exports = {
   url: process.env.mongodbURL,
+  SECRET: process.env.SECRET,
 };

@@ -1,0 +1,595 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a backend testing site for a Todo-List app.",
+    "version": "1.0.0",
+    "title": "ToDo-List",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "ozo18001@byui.edu"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "todo-app-backend2.herokuapp.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operations about user, login, sign up"
+    },
+    {
+      "name": "event",
+      "description": "The to-do items"
+    },
+    {
+      "name": "admin-user",
+      "description": "Administration permissions"
+    },
+    {
+      "name": "not-done",
+      "description": "Not yet implemented"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/user": {
+      "get": {
+        "tags": [
+          "admin-user"
+        ],
+        "summary": "Get all users from the database",
+        "description": "This can only be done by the admin.",
+        "operationId": "retrieveUsers",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved successfully!"
+          },
+          "500": {
+            "description": "Some error occurred while retrieving users."
+          }
+        }
+      }
+    },
+    "/user/create": {
+      "post": {
+        "tags": [
+          "admin-user"
+        ],
+        "summary": "Create user",
+        "description": "This can only be done by the admin.",
+        "operationId": "createUserByAdmin",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Admin-User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created successfully"
+          },
+          "400": {
+            "description": "content cannot be empty"
+          },
+          "500": {
+            "description": "Some error occurred while creating the user."
+          }
+        }
+      }
+    },
+    "/user/{username}": {
+      "get": {
+        "tags": [
+          "admin-user"
+        ],
+        "summary": "Get user by user name",
+        "description": "Get a specific user with their username",
+        "operationId": "getUserByName",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use user1 for testing.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved successfully!"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Some error occurred while retrieving users."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "not-done"
+        ],
+        "summary": "Updated user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Admin-User"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "not-done"
+        ],
+        "summary": "Delete user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/user/register": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Lets user sign up",
+        "description": "This can only be done by the user.",
+        "operationId": "createUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Account created successfully"
+          },
+          "400": {
+            "description": "Password doesn't match"
+          },
+          "401": {
+            "description": "Email already exists"
+          },
+          "500": {
+            "description": "Some error occurred while signing up."
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "description": "The email for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            },
+            "headers": {
+              "X-Rate-Limit": {
+                "type": "integer",
+                "format": "int32",
+                "description": "calls per hour allowed by the user"
+              },
+              "X-Expires-After": {
+                "type": "string",
+                "format": "date-time",
+                "description": "date in UTC when token expires"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Allows the user to view their profile",
+        "description": "This can only be done by the user.",
+        "operationId": "viewProfile",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved successfully!"
+          },
+          "500": {
+            "description": "Some error occurred while access profile."
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs out current logged in user session",
+        "description": "",
+        "operationId": "logoutUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Logout Successful!"
+          },
+          "400": {
+            "description": "Some error occurred while trying to log out."
+          }
+        }
+      }
+    },
+    "/event": {
+      "get": {
+        "tags": [
+          "event"
+        ],
+        "summary": "Get all to-do lists items from the database",
+        "description": "This retrieves all the events from the database.",
+        "operationId": "retrieveEvents",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved successfully!"
+          },
+          "500": {
+            "description": "Some error occurred while retrieving events."
+          }
+        }
+      }
+    },
+    "/event/create": {
+      "post": {
+        "tags": [
+          "event"
+        ],
+        "summary": "Create events",
+        "description": "This is to create a to-do item.",
+        "operationId": "createEvent",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created event object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New item created successfully"
+          },
+          "400": {
+            "description": "Content can not be empty!"
+          },
+          "500": {
+            "description": "Some error occurred while creating the event."
+          }
+        }
+      }
+    },
+    "/event/{eventName}": {
+      "get": {
+        "tags": [
+          "event"
+        ],
+        "summary": "Get to-do item by name",
+        "description": "Get a specific to-do item event by its name",
+        "operationId": "getEventByName",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "eventName",
+            "in": "path",
+            "description": "Event name string is required and functions as id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved successfully!"
+          },
+          "400": {
+            "description": "Invalid name supplied"
+          },
+          "404": {
+            "description": "To-do item not found"
+          },
+          "500": {
+            "description": "Error retrieving event with eventName"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "not-done"
+        ],
+        "summary": "Updated user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateEventByName",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "eventName",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "not-done"
+        ],
+        "summary": "Delete user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteEventByName",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "eventName",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": [
+        "firstname",
+        "lastname",
+        "email",
+        "password",
+        "password2"
+      ],
+      "properties": {
+        "firstname": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "lastname": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string",
+          "minLength": 8
+        },
+        "password2": {
+          "type": "string",
+          "minLength": 8
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "Event": {
+      "type": "object",
+      "required": [
+        "title",
+        "done",
+        "date",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "done": {
+          "type": "boolean"
+        },
+        "date": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Event"
+      }
+    },
+    "Admin-User": {
+      "type": "object",
+      "required": [
+        "password",
+        "username"
+      ],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Admin-User"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
